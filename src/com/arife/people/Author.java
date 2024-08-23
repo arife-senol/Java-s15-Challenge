@@ -1,13 +1,22 @@
 package com.arife.people;
 
+import com.arife.library.Book;
+
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class Author extends Person {
     private int id;
-    private Set<String> books;
+    private Set<Book> books;
 
-    public Author(String name, int id, Set<String> books) {
+    public Author(String name, int id) {
+        super(name);
+        this.id = id;
+        books = new HashSet<>();
+    }
+
+    public Author(String name, int id, Set<Book> books) {
         super(name);
         this.id = id;
         this.books = books;
@@ -21,26 +30,26 @@ public class Author extends Person {
         this.id = id;
     }
 
-    public Set<String> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<String> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
-    public void newBook(String book){
+    public void addBook(Book book){
         books.add(book);
-        System.out.println("This book added to the book list :"+book);
+        System.out.println("This book added to the book list :"+book.getBookId()+" "+book.getBookName());
     }
     public void showBook(){
-        for(String book:books){
+        for(Book book:books){
             System.out.println(book);
         }
 
     }
     public void removeBook(String book){
         books.remove(book);
-        System.out.println("This book removed from the book list :"+book);
+        System.out.println("This book removed from the book list :"+book.toString());
     }
 
     @Override
@@ -69,4 +78,5 @@ public class Author extends Person {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
